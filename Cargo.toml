@@ -2,6 +2,8 @@
 name = "squarize"
 version = "0.1.0"
 edition = "2024"
+description = "A simple CLI tool to squarize images by padding them with transparent pixels."
+license = "MIT"
 
 [dependencies]
 clap = { version = "4.5.35", features = ["derive"] }
