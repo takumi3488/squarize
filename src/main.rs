@@ -11,6 +11,10 @@ struct Args {
 
     /// 出力PNG画像のパス
     output: PathBuf,
+
+    /// 透過部分を白く塗りつぶす
+    #[clap(short = 'w', long)]
+    white_background: bool,
 }
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
@@ -25,8 +29,15 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     // 正方形のサイズを計算（長辺に合わせる）
     let size = width.max(height);
 
-    // 新しい正方形の画像を作成（透明で初期化）
+    // 新しい正方形の画像を作成
     let mut squared = ImageBuffer::new(size, size);
+
+    // 白背景で初期化（-wフラグが指定された場合）
+    if args.white_background {
+        for px in squared.pixels_mut() {
+            *px = image::Rgba([255, 255, 255, 255]);
+        }
+    }
 
     // 中央に配置するための開始位置を計算
     let x = (size - width) / 2;
@@ -34,7 +45,12 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     // 元の画像を新しい正方形画像の中央にコピー
     for (i, j, pixel) in img.pixels() {
-        squared.put_pixel(i + x, j + y, pixel);
+        // -wフラグが指定されている場合、透明部分を白く塗りつぶす
+        if args.white_background && pixel[3] < 255 {
+            squared.put_pixel(i + x, j + y, image::Rgba([255, 255, 255, 255]));
+        } else {
+            squared.put_pixel(i + x, j + y, pixel);
+        }
     }
 
     // 出力ファイルに保存
