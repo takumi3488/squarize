@@ -1,6 +1,6 @@
 [package]
 name = "squarize"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2024"
 description = "A simple CLI tool to squarize images by padding them with transparent pixels."
 license = "MIT"
