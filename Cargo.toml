@@ -1,9 +1,16 @@
 [package]
+description = "A simple CLI tool to squarize images by padding them with transparent pixels."
+edition = "2024"
+license = "MIT"
 name = "squarize"
 version = "0.1.1"
-edition = "2024"
-description = "A simple CLI tool to squarize images by padding them with transparent pixels."
-license = "MIT"
+
+[lints.clippy]
+allow_attributes = "deny"
+dbg_macro = "deny"
+expect_used = "deny"
+pedantic = { level = "warn", priority = -1 }
+unwrap_used = "deny"
 
 [dependencies]
 clap = { version = "4.5.35", features = ["derive"] }
