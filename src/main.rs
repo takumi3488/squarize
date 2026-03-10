@@ -56,6 +56,6 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     // 出力ファイルに保存
     squared.save(&args.output)?;
 
-    println!("画像を正方形に変換して保存しました: {:?}", args.output);
+    println!("画像を正方形に変換して保存しました: {}", args.output.display());
     Ok(())
 }
