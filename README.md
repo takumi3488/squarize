@@ -40,3 +40,7 @@ squarize input.png output.png
 
 - image: 画像処理
 - clap: コマンドライン引数の解析
+
+## スポンサー
+
+squarize が役に立ったら、開発・メンテナンスを支援するために [GitHub Sponsors](https://github.com/sponsors/takumi3488) でのスポンサーをご検討ください。
